@@ -1,4 +1,4 @@
-const express = 'express';
+const express = require('express');
 const userRouter = require('./users/userRouter');
 const server = express();
 
@@ -15,4 +15,4 @@ function logger(req, res, next) {
   console.log(`Method: ${req.method}, Url: ${req.url}, Time: ${new Date().toISOString()}`)
 };
 
-module.exports = server;
+module.exports = server; 

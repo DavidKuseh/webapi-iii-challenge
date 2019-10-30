@@ -1,4 +1,4 @@
-const express = 'express';
+const express = require('express');
 
 const Users = require('./userDb.js');
 const Posts = require('../posts/postDb.js');
@@ -126,4 +126,4 @@ function validatePost(req, res, next) {
       }
 };
 
-module.exports = router;
+module.exports = router; 
