@@ -14,7 +14,7 @@ router.post('/', validateUser, (req, res) => {
     })
 });
 
-router.post('/:id/posts', validateUserId, validatePost, (req, res) => {
+router.post('/:id/posts', validateUserId, (req, res) => {
     const { id } = req.params;
     const newPost = {...req.body, user_id: id};
     Posts.insert(newPost)
@@ -47,7 +47,7 @@ router.get('/:id', validateUserId, (req, res) => {
     })
 });
 
-router.get('/:id/posts', validateUserId, (req, res) => {
+router.get('/:id/posts', validateUserId, validatePost, (req, res) => {
     Users.getUserPosts(req.params.id)
     .then(posts => {
         res.status(200).json(posts);
@@ -73,7 +73,7 @@ router.delete('/:id', validateUserId, (req, res) => {
     })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateUserId, (req, res) => {
     Users.update(req.params.id, req.body) 
     .then(user => {
         if (user) {
