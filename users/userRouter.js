@@ -40,7 +40,7 @@ router.get('/:id', validateUserId, (req, res) => {
             res.status(200).json(req.user);
 });
 
-router.get('/:id/posts', validateUserId, validatePost, (req, res) => {
+router.get('/:id/posts', validateUserId, (req, res) => {
     Users.getUserPosts(req.params.id)
     .then(posts => {
         res.status(200).json(posts);
