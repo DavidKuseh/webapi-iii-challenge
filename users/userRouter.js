@@ -37,14 +37,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', validateUserId, (req, res) => {
-    Users.getById(req.params.id)
-    .then(user => {
-        if (user) {
-            res.status(200).json(user);
-        } else {
-            res.status(404).json({ message: 'user does not exist'})
-        }
-    })
+            res.status(200).json(req.user);
 });
 
 router.get('/:id/posts', validateUserId, validatePost, (req, res) => {
@@ -95,7 +88,7 @@ Users.getById(req.params.id)
     if(!user) {
         res.status(400).json({message: 'invalid user ID'})
     } else {
-        req.user = req.params.id;
+        req.user = user;
         next();
         }
     })
